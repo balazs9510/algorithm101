@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace Main.DataStuctures
 {
-    public class LinkedList<T>
+    public class LinkedList
     {
-        private class Node<T>
+        private class Node
         {
-            public T Data { get; set; }
-            public Node<T> Next { get; set; }
-            public Node(T data)
+            public int Data { get; set; }
+            public Node Next { get; set; }
+            public Node(int data)
             {
                 Data = data;
             }
         }
 
-        private Node<T> _head;
+        private Node? _head;
 
         public int Length()
         {
@@ -34,9 +34,9 @@ namespace Main.DataStuctures
             return size;
         }
 
-        public void AddFront(T data)
+        public void AddFront(int data)
         {
-            var newNode = new Node<T>(data);
+            var newNode = new Node(data);
 
             if (_head == null)
             {
@@ -48,9 +48,9 @@ namespace Main.DataStuctures
             _head = newNode;
         }
 
-        public void AddBack(T data)
+        public void AddBack(int data)
         {
-            var newNode = new Node<T>(data);
+            var newNode = new Node(data);
 
             if (_head == null)
             {
@@ -61,21 +61,21 @@ namespace Main.DataStuctures
             GetTail().Next = newNode;
         }
 
-        public T GetFirst()
+        public int GetFirst()
         {
             if (_head == null) throw new IndexOutOfRangeException("The Linked list is not filled.");
 
             return _head.Data;
         }
 
-        public T GetLast()
+        public int GetLast()
         {
             if (_head == null) throw new IndexOutOfRangeException("The Linked list is not filled.");
 
             return GetTail().Data;
         }
 
-        private Node<T> GetTail()
+        private Node GetTail()
         {
             var iterator = _head;
             while (iterator.Next != null)
@@ -89,6 +89,30 @@ namespace Main.DataStuctures
         public void Clear()
         {
             _head = null;
+        }
+
+        public void DeleteValue(int value)
+        {
+            if (_head == null) return;
+
+           
+            if (_head.Data == value)
+            {
+                _head = _head.Next;
+                return;
+            }
+
+            Node current = _head;
+
+            while (current.Next != null)
+            {
+                if (current.Next.Data == value)
+                {
+                    current.Next = current.Next.Next;
+                    return;
+                }
+                current = current.Next;
+            }
         }
     }
 }

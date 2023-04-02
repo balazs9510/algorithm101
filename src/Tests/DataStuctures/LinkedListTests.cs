@@ -3,12 +3,12 @@ namespace Tests.DataStuctures
 {
     public class LinkedListTests
     {
-        public Main.DataStuctures.LinkedList<int> LinkedList { get; set; }
+        public Main.DataStuctures.LinkedList LinkedList { get; set; }
 
         [SetUp]
         public void Setup()
         {
-            LinkedList = new Main.DataStuctures.LinkedList<int>();
+            LinkedList = new Main.DataStuctures.LinkedList();
         }
 
         [Test]
@@ -65,6 +65,20 @@ namespace Tests.DataStuctures
             LinkedList.Clear();
 
             Assert.That(LinkedList.Length(), Is.EqualTo(0));
+        }
+
+        [Test]
+        public void DeleteTest()
+        {
+            LinkedList.AddBack(1);
+            LinkedList.AddBack(2);
+            LinkedList.AddBack(3);
+
+            LinkedList.DeleteValue(2);
+
+            Assert.That(LinkedList.Length(), Is.EqualTo(2));
+            Assert.That(LinkedList.GetFirst(), Is.EqualTo(1));
+            Assert.That(LinkedList.GetLast(), Is.EqualTo(3));
         }
     }
 }
