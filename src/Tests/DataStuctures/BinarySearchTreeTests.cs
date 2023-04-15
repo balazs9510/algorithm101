@@ -38,8 +38,16 @@ namespace Tests.DataStuctures
             Assert.That(_bst.Find(99), Is.EqualTo(null));
 
             _bst.Print();
+            Console.WriteLine();
+            Console.WriteLine("In order");
 
-            ////        _bst.printInOrderTraversal();
+            _bst.PrintInOrderTraversal();
+            Console.WriteLine();
+            Console.WriteLine("Post order");
+            _bst.PrintPostOrderTraversal();
+            Console.WriteLine();
+            Console.WriteLine("Pre order");
+            _bst.PrintPreOrderTraversal();
             ////        _bst.printPreOrderTraversal();
             //_bst.printPostOrderTraversal();
         }

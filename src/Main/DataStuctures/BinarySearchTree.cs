@@ -17,9 +17,9 @@ namespace Main.DataStuctures
             public BinarySearchTreeNode Left { get; set; }
             public BinarySearchTreeNode Right { get; set; }
 
-            public BinarySearchTreeNode(int Key, string value)
+            public BinarySearchTreeNode(int key, string value)
             {
-                Key = Key;
+                Key = key;
                 Value = value;
             }
 
@@ -115,6 +115,65 @@ namespace Main.DataStuctures
             Console.WriteLine("  " + rootLeftKey + "    " + rootRightKey);
             Console.WriteLine(" / \\  / \\");
             Console.WriteLine(rootLeftLeftKey + "  " + rootLeftRightKey + " " + rootRightLeftKey + "   " + rootRightRightKey);
+        }
+
+        public void PrintInOrderTraversal()
+        {
+            PrintInOrderTraversal(_root);
+        }
+
+        private void PrintInOrderTraversal(BinarySearchTreeNode node)
+        {
+            if (node.Left != null)
+            {
+                PrintInOrderTraversal(node.Left);
+            }
+            Console.Write($"({node.Key},{node.Value});");
+            if (node.Right != null)
+            {
+                PrintInOrderTraversal(node.Right);
+            }
+        }
+
+        public void PrintPreOrderTraversal()
+        {
+            PrintPreOrderTraversal(_root);
+        }
+
+        private void PrintPreOrderTraversal(BinarySearchTreeNode node)
+        {
+            Console.Write($"({node.Key},{node.Value});");
+
+            if (node.Left != null)
+            {
+                PrintPreOrderTraversal(node.Left);
+            }
+           
+            if (node.Right != null)
+            {
+                PrintPreOrderTraversal(node.Right);
+            }
+        }
+
+        public void PrintPostOrderTraversal()
+        {
+            PrintPostOrderTraversal(_root);
+        }
+
+        private void PrintPostOrderTraversal(BinarySearchTreeNode node)
+        {
+
+            if (node.Left != null)
+            {
+                PrintPostOrderTraversal(node.Left);
+            }
+
+            if (node.Right != null)
+            {
+                PrintPostOrderTraversal(node.Right);
+            }
+
+            Console.Write($"({node.Key},{node.Value});");
         }
 
         private BinarySearchTreeNode FindParent(BinarySearchTreeNode node, int index)
